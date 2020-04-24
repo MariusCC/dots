@@ -1,0 +1,388 @@
+{
+	"folder_history":
+	[
+	],
+	"last_version": 3211,
+	"last_window_id": 2,
+	"log_indexing": false,
+	"settings":
+	{
+		"new_window_height": 836.0,
+		"new_window_settings":
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/usr/local/bin/wal-tmTheme.sh",
+				"/home/uriel/.Xresources"
+			],
+			"find":
+			{
+				"height": 0.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"incremental_find":
+			{
+				"height": 0.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"replace":
+			{
+				"height": 0.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": true,
+			"template_settings":
+			{
+			}
+		},
+		"new_window_width": 1536.0
+	},
+	"windows":
+	[
+		{
+			"auto_complete":
+			{
+				"selected_items":
+				[
+				]
+			},
+			"buffers":
+			[
+			],
+			"build_system": "",
+			"build_system_choices":
+			[
+			],
+			"build_varint": "",
+			"command_palette":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"console":
+			{
+				"height": 0.0,
+				"history":
+				[
+				]
+			},
+			"distraction_free":
+			{
+				"menu_visible": true,
+				"show_minimap": false,
+				"show_open_files": false,
+				"show_tabs": false,
+				"side_bar_visible": false,
+				"status_bar_visible": false
+			},
+			"file_history":
+			[
+				"/home/uriel/.cache/wal/colors.Xresources",
+				"/home/uriel/dots/xfiles/themes/mariana",
+				"/home/uriel/Documentos/git comandos",
+				"/home/uriel/polybar-personal-themes/README.md",
+				"/home/uriel/.config/polybar/launch.sh",
+				"/home/uriel/.config/polybar/config",
+				"/home/uriel/.config/polybar/colors.ini",
+				"/home/uriel/.config/geany/colorschemes/white.conf",
+				"/home/uriel/.config/polybar/scripts/styles.sh",
+				"/home/uriel/.config/polybar/scripts/style.sh",
+				"/home/uriel/.config/polybar/scripts/color.rasi",
+				"/home/uriel/Documentos/waffle/config",
+				"/home/uriel/.config/polybar/backup/Bars/polybar-1/light/config.amber",
+				"/home/uriel/.config/polybar/config-openbox",
+				"/home/uriel/.config/polybar/scripts/2bws.sh",
+				"/home/uriel/.config/polybar/scripts/wscycle.sh",
+				"/home/uriel/.config/rofi/themes/config.simple",
+				"/home/uriel/.config/i3/scripts/livia",
+				"/home/uriel/.config/geany/colorschemes/pro.conf",
+				"/home/uriel/scripts/2bws.sh",
+				"/home/uriel/.cache/wal/colors.sh",
+				"/home/uriel/dotfiles/Xresources",
+				"/home/uriel/.config/compton.conf",
+				"/home/uriel/dotfiles/awesome/rc.lua",
+				"/home/uriel/dotfiles/bin/widgets/launcher.sh",
+				"/home/uriel/dotfiles/bin/popups/music.sh",
+				"/home/uriel/dotfiles/bin/widgets/music.sh",
+				"/home/uriel/dotfiles/bin/popups/switcher.sh",
+				"/home/uriel/dotfiles/bin/popups/launcher.sh",
+				"/home/uriel/dotfiles/polybar/config",
+				"/home/uriel/.config/polybar/backup/source/siji/modules.ini",
+				"/home/uriel/.cache/wal/colors-oomox",
+				"/home/uriel/Descargas/almighty-dotfiles/.config/bspwm/bspwmrc",
+				"/home/uriel/Documentos/siji/config",
+				"/home/uriel/.config/polybar/config-i3",
+				"/home/uriel/scripts/music.sh",
+				"/home/uriel/scripts/date.sh",
+				"/home/uriel/.config/polybar/config1",
+				"/home/uriel/scripts/hidebars.sh",
+				"/home/uriel/scripts/popups/cover.sh",
+				"/home/uriel/.zshrc",
+				"/home/uriel/.ncmpcpp/art-dark.sh",
+				"/home/uriel/.config/i3/config",
+				"/home/uriel/.ncmpcpp/albumart",
+				"/home/uriel/.ncmpcpp/mpd-control.sh",
+				"/home/uriel/Descargas/ncmpcpp-with-albumart-master/ncmpcpp-albumart",
+				"/home/uriel/Descargas/ncmpcpp-with-albumart-master/albumart",
+				"/home/uriel/Descargas/ncmpcpp-with-albumart-master/ncmpcpp2",
+				"/home/uriel/.Xresources",
+				"/usr/local/bin/wal-tmTheme.sh"
+			],
+			"find":
+			{
+				"height": 21.0
+			},
+			"find_in_files":
+			{
+				"height": 0.0,
+				"where_history":
+				[
+				]
+			},
+			"find_state":
+			{
+				"case_sensitive": false,
+				"find_history":
+				[
+					"color",
+					"${colors.cyan}",
+					"${colors.black}",
+					"${colors.red}",
+					"${colors.fg}",
+					"${colors.bg}",
+					"${colors.background}",
+					"${colors.foreground}",
+					"0d0e0d",
+					"bin/",
+					"6601"
+				],
+				"highlight": true,
+				"in_selection": false,
+				"preserve_case": false,
+				"regex": false,
+				"replace_history":
+				[
+					"colors",
+					"${color.cyan}",
+					"${color.black}",
+					"${color.red}",
+					"${color.fg}",
+					"${color.bg}",
+					"${colors.bg}",
+					"${colors.fg}",
+					"12171b",
+					"6600"
+				],
+				"reverse": false,
+				"show_context": true,
+				"use_buffer2": true,
+				"whole_word": false,
+				"wrap": true
+			},
+			"groups":
+			[
+				{
+					"sheets":
+					[
+					]
+				}
+			],
+			"incremental_find":
+			{
+				"height": 21.0
+			},
+			"input":
+			{
+				"height": 0.0
+			},
+			"layout":
+			{
+				"cells":
+				[
+					[
+						0,
+						0,
+						1,
+						1
+					]
+				],
+				"cols":
+				[
+					0.0,
+					1.0
+				],
+				"rows":
+				[
+					0.0,
+					1.0
+				]
+			},
+			"menu_visible": true,
+			"output.find_results":
+			{
+				"height": 0.0
+			},
+			"pinned_build_system": "",
+			"position": "0,1,0,0,0,0,0,0,0,1600,900",
+			"project": "",
+			"replace":
+			{
+				"height": 38.0
+			},
+			"save_all_on_build": true,
+			"select_file":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_project":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"select_symbol":
+			{
+				"height": 0.0,
+				"last_filter": "",
+				"selected_items":
+				[
+				],
+				"width": 0.0
+			},
+			"selected_group": 0,
+			"settings":
+			{
+			},
+			"show_minimap": true,
+			"show_open_files": false,
+			"show_tabs": true,
+			"side_bar_visible": true,
+			"side_bar_width": 150.0,
+			"status_bar_visible": false,
+			"template_settings":
+			{
+			},
+			"window_id": 1,
+			"workspace_name": ""
+		}
+	],
+	"workspaces":
+	{
+		"recent_workspaces":
+		[
+		]
+	}
+}

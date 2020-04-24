@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+MENU="$(rofi -config ~/.config/rofi/themes/config.simple -sep "|" -dmenu -i -p 'System' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout|鈴 suspend| Reboot| Shutdown")"
+            case "$MENU" in
+                *Lock) i3lock ;;
+                *suspend ) mpc -q pause
+                 amixer set Master mute
+                 systemctl suspend ;;
+                *Logout) i3-msg exit ;;
+                *Reboot) systemctl reboot ;;
+                *Shutdown) systemctl -i poweroff
+            esac

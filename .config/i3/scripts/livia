@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Launch rofi with custom configuration
+rofi -show drun \
+-display-drun "Search " \
+-hide-scrollbar true \
+-border 2 \
+-border-radius 8 \
+-bw 2 \
+-lines 22 \
+-padding 36 \
+-xoffset 10 \
+-yoffset -35 \
+-width 19 \
+-location 7\
+-columns 1 \
+-font "Noto Sans 8" \
+-color-enabled true \
+-color-window "#12171b,#12171b,#12171b" \
+-color-normal "#12171b,#b8a5a8,#12171b,#12171b,#704955" \
+-color-active "#12171b,#704955,#12171b,#12171b,#704955" \
+-color-urgent "#12171b,#b8a5a8,#12171b,#12171b,#b8a5a8"
+
+# Theming help
+# color window = background, border, separator
+# color normal = background, foreground, background-alt, highlight-background, highlight-foreground
+# color active = background, foreground, background-alt, highlight-background, highlight-foreground
+# color urgent = background, foreground, background-alt, highlight-background, highlight-foreground

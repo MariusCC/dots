@@ -1,0 +1,62 @@
+conky.config = {
+	use_xft                = true,
+	xftalpha               = 1,
+	update_interval        = 1,
+	total_run_times        = 0,
+
+	background             = true, 
+    out_to_console         = false,
+    out_to_stderr          = false,
+
+	own_window             = true,
+    own_window_class       = 'Conky',
+	own_window_type        = 'override',
+	own_window_argb_visual = true,
+    own_window_transparent = false,
+    own_window_colour      ='#13181d',
+    
+	double_buffer          = true,
+
+	minimum_width          = 300,
+	maximum_width          = 300,
+
+	minimum_height         = 85,
+
+	draw_shades            = false,
+	draw_outline           = false,
+	draw_borders           = false,
+	draw_graph_borders     = true,
+	
+    default_color          = 'c8c9bd',
+    color0                 = '13181d',
+    color1                 = '4B5A62',
+    color2                 = '586668',
+    color3                 = '6A746F',
+    color4                 = '7B8377',
+
+	alignment              = 'top_center',
+	gap_x                  = 650,
+	gap_y                  = 10,
+	no_buffers             = true,
+	text_buffer_size       = 2048,
+	uppercase              = false,
+	cpu_avg_samples        = 4,
+	net_avg_samples        = 2,
+	override_utf8_locale   = true,
+
+	font                   = 'Terminus (TTF):style=regular:size=9',
+
+}
+
+conky.text = [[
+${if_running mpd}${execi 4 ~/.config/conky/res/art-dark.sh}\
+${image /tmp/cover.jpg -p 0,3 -s 300x90}\
+${voffset -10}
+${offset 130} ${font Terminus (TTF):Bold:size=7} ${color c1c0c6}${scroll 26 3 ${mpd_smart}}\
+${voffset -1}
+${offset 120}${color 965E55}-------------------------------------------------------
+${voffset 30}
+${offset 130} ${font Terminus (TTF):Bold:size=7} ${color 696E75}${mpd_elapsed}  ${color 87868a}${mpd_bar 2,85}  ${color 575D62}${mpd_length}
+${voffset -0}
+${offset 120} ${font Terminus (TTF):Bold:size=7} ${color3}Bit: ${color}${mpd_bitrate}kbps${color3}  Rand: ${color}${mpd_random}  ${color3}Rep: ${color}${mpd_repeat}
+]]

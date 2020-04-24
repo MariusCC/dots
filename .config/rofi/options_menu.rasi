@@ -1,0 +1,98 @@
+configuration {
+    
+    window-format:                  "{t}";
+    show-icons:                     true;
+    font:                           "DejaVu Sans 20";
+    columns:                        3;
+}
+
+* {
+    background-color:               #00000000;
+
+    background:                     @background;
+    background-alt:                 #fefefe80;
+    text-color:                     #0F131C;
+    primary:                        #fefefe;
+    urgent:                         #BF616A;
+}
+
+window {
+    height:                         49; // 1 - 0*0
+    width:                          300px;
+    location:                       northwest;
+    anchor:                         northwest;
+    x-offset:                       1298;
+    y-offset:                       810;
+    background-color:               #00000000;
+    border-radius:                  0px;
+}
+
+entry {
+    expand:                         false;
+    margin:                         4px 4px;
+    background-color:               @background-alt;
+    padding:                        2px;
+    border:                         0px;
+    border-color:                   #00000000;
+    
+}
+
+mainbox {
+    children:                       [ listview, message ];
+    padding:                        0px 120px;
+    margin:                         1px -41px;
+    background-color:               #00000000;
+}
+
+element {
+    padding:                        10px 11px;
+    orientation:                    horizontal;
+    margin:                         0px -25px;
+    text-color:                     #cbcbcb;
+    background-color:               #00000000;
+    border:                         0px 0px solid 0px 0px;
+    border-color:                   #00000000;
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color:               #00000000;
+}
+
+element normal.active, element alternate.active {
+    background-color:               #00000000;
+    border:                         0px 0px solid 0px 0px;
+    border-radius:                  0;
+    border-color:                   #00000000;
+}
+
+element selected {
+    border:                         0px 0px solid 0px 0px;
+    border-radius:                  0;
+    border-color:                   #00000000;
+    background-color:               #00000000;
+    text-color:                     #ffffff;
+}
+
+element selected.urgent {
+    background-color:               #00000000;
+}
+
+element selected.active {
+    background-color:               #00000000;
+}
+
+element-icon {
+    border:                         0px;
+    border-color:                   #00000000;
+    border-radius:                  0;
+    padding:                        29px;
+    background-color:               #00000000;
+}
+
+element-icon {
+    size: 32; /* Must be a power of 2 */
+}
+
+element-text {
+    vertical-align: -10.5;
+}

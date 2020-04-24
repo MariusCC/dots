@@ -1,0 +1,202 @@
+# set modifier
+set $super Mod4
+set $alt Mod1
+
+# set font
+font pango: Terminus (TTF) 8
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+#autostart
+exec --no-startup-id wal -R
+exec --no-startup-id xsettingsd &
+exec --no-startup-id compton
+exec --no-startup-id xfce4-power-manager &
+
+exec_always --no-startup-id "dunst -config ~/.config/dunst/dunstrc.i3 &"
+exec_always --no-startup-id "mpd"
+exec_always --no-startup-id ~/.config/i3/scripts/polybar_wrapper launch
+
+# bindsym $mod+Shift+m exec  kill -s USR1 $(pidof deadd-notification-center)
+
+# start a terminal
+bindsym $super+Return exec urxvt
+
+# # POLYBAR WRAPPER # # 
+bindsym $super+d exec --no-startup-id ~/.config/i3/scripts/polybar_wrapper rofi Search 
+
+## Open right panel (options menu)
+bindsym $super+BackSpace exec --no-startup-id ~/.config/i3/scripts/polybar_wrapper options
+
+
+# common apps keybinds
+bindsym Print exec "scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"
+bindsym $super+l exec i3lock
+bindsym $super+w exec firefox;workspace 2;focus
+bindsym $super+Shift+w exec --no-startup-id "firefox --private-window";workspace 2;focus
+
+
+# Audio
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -Mq set Master,0 5%+ unmute && pkill dunst && i3dunst && notify-send -u low 'Volume Rise ' $(volume)"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -Mq set Master,0 5%- unmute && pkill dunst && i3dunst && notify-send -u low 'Volume Down ' $(volume)"
+bindsym XF86AudioMute exec --no-startup-id "pamixer -t"
+
+# Brightness
+
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10 && pkill dunst && i3dunst && notify-send -u low 'Brightness Inc' $(blight)"
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10 && pkill dunst && i3dunst && notify-send -u low 'Brightness Dec' $(blight)" 
+
+## MY SHORTCUTS
+bindsym $super+Shift+d exec --no-startup-id dmenu-custom
+bindsym $super+Shift+t exec --no-startup-id Telegram
+bindsym $super+m exec --no-startup-id urxvt -hold -g 63x14 -e bash -c "ncmpcpp -c ~/.ncmpcpp/config-doble"
+bindsym $super+n exec --no-startup-id ncmpcpp2
+bindsym $super+e exec mpd_control.sh -j
+bindsym $super+a exec --no-startup-id urxvt -hold -g 32x15 -e bash -c "Sysinfo"
+bindsym $super+x exec --no-startup-id sysmenu
+
+bindsym $super+Shift+p exec --no-startup-id "termite -c .config/termite/config.i3 -r 'filemanager' -t 'ranger' -e ranger"
+bindsym $super+z exec --no-startup-id "~/.config/rofi/scripts/scrotmenu.sh"
+bindsym $super+i exec --no-startup-id "~/.config/rofi/scripts/i3layoutmenu.sh"
+
+# kill focused window
+bindsym $super+c kill
+bindsym $alt+F4 kill
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+bindsym $super+Tab focus right
+bindsym $super+Shift+Tab focus right
+
+# move focused window
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $super+h split h
+
+# split in vertical orientation
+bindsym $super+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# change container layout split
+bindsym $super+s layout toggle split
+
+# toggle tiling / floating
+bindsym $super+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+##### WORKSPACES ##################################
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+bindsym $super+Shift+C reload
+
+# exit i3
+#bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+}
+bindsym $super+r mode "resize"
+
+# window rules, you can find the window class using xprop
+# for_window [class=".*"] border pixel 4
+assign [class=termite] 1
+assign [class=Firefox|Transmission-gtk] 2
+assign [class=Thunar|File-roller] 3
+assign [class=Evince|Geany|Gucharmap|Soffice|libreoffice*] 4
+assign [class="(?i)Audacity|mplayer|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape"] 5
+assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 5
+assign [class="(?i)pcmanfm"] 3
+assign [title="ranger"] 3
+assign [title="htop"] 5
+assign [title="eDEX-UI"] 5
+assign [window_role="browser"] 2
+for_window [class="(?i)URxvt|polybar|xfd|mplayer|xfce4-terminal|Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol|pulseaudio-equalizer"] floating enable
+for_window [class=URxvt|xfce4-terminal|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+
+# DEFAULT BORDER
+for_window [class="^.*"] border pixel 0
+for_window [title="^.*"] border pixel 0
+
+# APPLICATION BORDERS
+for_window [class="Emacs"] border pixel $thick
+for_window [class="URxvt"] border pixel $thick
+for_window [class="st"] border pixel $thick
+#for_window [class="XTerm"] border pixel $thick
+
+# TOGGLE GAPS
+bindsym $super+g exec compton; gaps inner all set $inner; gaps outer all set $outer
+bindsym $super+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
+
+# GAP VARIABLES
+set $inner 32 
+set $outer 0
+
+# SET GAPS
+gaps inner $inner
+gaps outer $outer
+
+border_radius 8
+set $thick 16
+
+# BACKGROUND
+#exec_always hsetroot -add "#c79081" -add "#dfa579" -gradient 0
+#exec_always hsetroot -add "#DAD299" -add "#B0DAB9" -gradient 0
+#exec_always hsetroot -solid "#c79081"
+#set_from_resource $top color6
+#set_from_resource $bot color5
+#exec_always hsetroot -add "$top" -add "$bot" -gradient 0
+ 
+##### COLORS #######################################
+
+# XRESOURCES
+set_from_resource $fg foreground
+set_from_resource $bg background 
+
+# CLASS                 BORDER  BACK    TEXT    INDICATOR
+client.focused          $bg     $bg     $fg     $bg
+client.focused_inactive $bg     $bg     $fg     $bg 
+client.unfocused        $bg     $bg     $fg     $bg
+client.urgent           $bg     $bg     $fg     $bg 
+client.placeholder      $bg     $bg     $fg     $bg 

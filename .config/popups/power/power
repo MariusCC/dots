@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+# Source lemonbar config
+. $HOME/.config/lemonbar/lemonbar_config
+
+# Override Panel Settings
+PW=200
+PH=55
+PY=39
+
+# Settings for n30f for fancy look
+n30f -d -x 860 -y 33 $HOME/.config/popups/power/bg.png 
+
+
+echo " %{F$RED}%{F-} %{A:s:}Suspend%{A}  %{F$RED} %{F-}%{A:l:}Lock%{A}  %{F$RED} %{F-}%{A:e:}Exit%{A}" | lemonbar -g ${PW}x${PH}+${PX}+${PY} -f "$FONT1" -f "$FONT2" -B "#121212" -F "$FG" -dp | \
+    while :; do
+        read line
+        case $line in 
+            'e')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                exit 
+                ;;
+            'l')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p 
+                i3lock "Type Password To Unlock .."
+                exit                
+                ;;
+            's')
+                p=$(pgrep -n lemonbar)
+                n=$(pgrep -n n30f)
+                kill $n
+                kill $p
+                systemctl poweroff
+                exit
+                ;;
+        esac
+    done

@@ -1,0 +1,17 @@
+[Added Associations]
+application/x-shellscript=sublime_text_3.desktop;geany.desktop;vim.desktop;
+text/x-csrc=geany.desktop;
+video/mp4=vlc.desktop;
+application/x-theme=geany.desktop;
+font/ttf=geany.desktop;
+application/x-desktop=geany.desktop;
+text/html=geany.desktop;firefox.desktop;elinks.desktop;
+image/png=feh.desktop;gimp.desktop;
+application/x-cd-image=gnome-disk-image-writer.desktop;
+image/jpeg=feh.desktop;gimp.desktop;
+text/plain=sublime_text_3.desktop;geany.desktop;vim.desktop;
+inode/symlink=geany.desktop;
+text/markdown=geany.desktop;
+
+[Default Applications]
+x-scheme-handler/tg=telegramdesktop.desktop

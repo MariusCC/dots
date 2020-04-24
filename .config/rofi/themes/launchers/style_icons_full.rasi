@@ -1,0 +1,139 @@
+/*
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Mail : adi1090x@gmail.com
+ * Github : @adi1090x
+ * Reddit : @adi1090x
+ *
+ */
+
+configuration {
+    drun-display-format: "{icon}";
+    display-drun: "Apps";
+	show-icons: true;
+	icon-theme: "Papirus";
+	location: 0;
+	yoffset: 0;
+    xoffset: 0;	
+	fake-transparency: false;
+	hide-scrollbar: true;
+	bw: 0;
+    fullscreen: false;
+    show-icons: true;
+	terminal: "termite";
+	sidebar-mode: false;
+}
+
+// Blur 
+* {
+bg: #12121299;
+find: #00000099;
+txt: #e5e5e5;
+border: #e5e5e5;
+bg-sel: #00000000;
+fg: #ffffff;
+}
+
+// black
+/*
+* {
+bg: #000000;
+find: #151515;
+txt: #e5e5e5;
+border: #e5e5e5;
+bg-sel: #151515;
+fg: #ffffff;
+}
+*/
+
+// white
+/*
+* {
+bg: #ffffff;
+find: #e5e5e5;
+txt: #252525;
+border: #606060;
+bg-sel: #e5e5e5;
+fg: #ffffff;
+}
+*/
+
+* {
+  background-color: #00000000;
+  font: "FantasqueSansMono Nerd Font 48";
+}
+
+window {
+  height: 260px;
+  width:  1600px;
+  transparency: "real";
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  padding: 0% 5% 5% 5%;
+  background-color: @bg;
+  border: 0;
+  border-radius: 0;
+  border-color: @border;
+}
+
+listview {
+  columns: 7;
+  padding: 1%;
+  spacing: 2%;
+}
+
+element {
+  border: 0;
+  border-radius: 8;
+  text-color: @fg;
+  orientation: vertical;
+  padding: 2% 2% 2% 3%;
+}
+
+element selected {
+  background-color: @bg-sel;
+  border: 0 0 2 0;
+  border-radius: 8;
+  border-color: @border;
+  text-color: @fg;
+}
+
+inputbar {
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    expand:                         false;
+    border:                  		0px 0px 2px 0px;
+    border-radius:                  30px;
+    border-color:                  	@border;
+    margin:                         10px 73% 0px 5px;
+    padding:                        6px 6px 6px 6px;
+    position:                       center;
+    font: "FantasqueSansMono Nerd Font 11";
+}
+
+prompt {
+    enabled: 						true;
+	padding: 						0px 8px 0px 8px;
+	background-color: 				@background-ib;
+	text-color: 					@foreground;
+	font:							"FantasqueSansMono Nerd Font 20";
+}
+
+entry {
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    placeholder-color:              @foreground;
+    expand:                         true;
+    horizontal-align:               0;
+    padding:                        3px 0px 3px 0px;
+    placeholder:                    "Search Applications";
+    blink:                          true;
+}
+
+case-indicator {
+    background-color:               @background-ib;
+    text-color:                     @foreground;
+    spacing:                        0;
+}

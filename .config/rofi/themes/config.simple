@@ -1,0 +1,13 @@
+! Rofi
+rofi.font: Terminus (TTF) 9
+rofi.padding: 20x
+rofi.line-padding: 2
+rofi.borderwidth: 0
+rofi.border-radius: 6px
+rofi.color-enabled: true
+rofi.hide-scrollbar: true
+rofi.separator-style: solid
+rofi.color-window: #12171b, #b8a5a8, #12171b
+rofi.color-normal: #12171b, #b8a5a8, #12171b, #12171b, #704955
+rofi.color-urgent: argb:00000000, #f43753, argb:00000000, argb:00000000, #bf616a
+rofi.color-active: argb:00000000, #49bbfb, argb:00000000, argb:00000000, #bf616a

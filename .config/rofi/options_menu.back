@@ -1,0 +1,65 @@
+configuration {
+
+    show-icons:                     false;
+    font:                           "Font Awesome 9";
+}
+
+* {
+    background-color:               transparent;
+
+    background:                     #00000000;
+    background-alt:                 #5E81AC80;
+    text-color:                     #D8DEE9;
+    primary:                        #A3BE8C;
+    urgent:                         #BF616A;
+}
+
+window {
+    height:                         105; // 1440 - 2*16
+    width:                          313px;
+    location:                       northeast;
+    anchor:                         northeast;
+    x-offset:                       -644;
+    y-offset:                       791;
+    transparency:                   "real";
+    background-color:               @background;
+    border-radius:                  0;
+    border-color:                   #00000000;
+}
+
+mainbox {
+    children:                       [listview]; /* No text entry */
+    border:                         2px;
+    border-color:                   #eecbac;
+    padding:                        4% 0% 0% 10%;
+    border-radius:                  2;
+    margin:                         0px;
+}
+
+listview {
+    layout:                         horizontal;
+    spacing:                        20px;
+}
+
+element-text {
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         5px;
+    border:                         0px;
+    border-color:                   @primary;
+    border-radius:                  5;
+    padding:                        12px 0px 6px;
+    width:                          75px;
+}
+element {
+    padding:                        0px;
+    text-color:                     #575D62;
+}
+
+element selected {
+    border:                         0px 0px solid 0px 0px;
+    border-radius:                  0;
+    border-color:                   #00000000;
+    text-color:                     #ffffff;
+    background-color:               #00000000;
+}

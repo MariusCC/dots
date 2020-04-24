@@ -1,0 +1,104 @@
+configuration {
+    
+    window-format:                  "{t}";
+    show-icons:                     true;
+    font:                           "DejaVu Sans 10";
+    columns:                        1;
+    lines:                          5;
+}
+
+* {
+    background-color:               transparent;
+
+    background:                     @background;
+    background-alt:                 #fefefe80;
+    text-color:                     #0F131C;
+    primary:                        #fefefe;
+    urgent:                         #BF616A;
+}
+
+window {
+    height:                         300; // 40 - 10*10
+    width:                          300px;
+    location:                       northwest;
+    anchor:                         northwest;
+    x-offset:                       6;
+    y-offset:                       300;
+    background-color:               #ffffff;
+    border-radius:                  0px;
+    border:                         0px;
+}
+
+mainbox {
+    children:                       [listview]; /* No text entry */
+    border:                         0px;
+    border-color:                   #252A2D;
+    padding:                        0px 0px 0px 0px;
+    margin:                         52px 6px;
+}
+
+entry {
+    expand:                         false;
+    margin:                         12px 36px;
+    background-color:               @background-alt;
+    padding:                        8px;
+    border:                         8px;
+    border-color:                   @background-alt;
+    border-radius:                  5px;
+}
+
+listview {
+    layout:                         horizontal;
+    spacing:                        0px;
+}
+
+element-text {
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    margin:                         5px;
+    border:                         0px;
+    border-color:                   @primary;
+    border-radius:                  0;
+    padding:                        -31px 0px -12px;
+    width:                          0px;
+}
+
+element {
+    padding:                        0px 0px 0px 0px;
+    border-radius:                  0px;
+    text-color:                     #ff00ff;
+   
+}
+
+element normal.urgent, element alternate.urgent {
+    background-color:               @urgent;
+}
+
+element normal.active, element alternate.active {
+    background-color:               @background-alt;
+    border:                         4px 4px solid 4px 4px;
+    border-radius:                  8;
+    border-color:                   transparent;
+}
+
+element selected {
+    border:                         0px 0px solid 0px 0px;
+    border-radius:                  0;
+    border-color:                   @primary;
+    text-color:                     #B48EAD;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+}
+
+element selected.active {
+    background-color:               @background-alt;
+}
+
+element-icon {
+    border:                         1px;
+    border-color:                   @primary;
+    border-radius:                  5;
+    padding:                        6px;
+}

@@ -1,0 +1,615 @@
+#!/bin/bash
+
+checkup () {
+	# Create tint2 folder if doesn't exist
+	if [ ! -d "$HOME/.config/polybar/" ]; then
+		mkdir ~/.config/polybar/
+	fi
+	# Create dunst folder if doesn't exist
+	if [ ! -d "$HOME/.config/dunst" ]; then
+		mkdir ~/.config/dunst/
+	fi
+	# Remove the previous cache
+	if [ -e ~/.cache/paintmyboxcache ]; then
+		rm ~/.cache/paintmyboxcache
+	fi
+	# Remove previous generated tint2 theme
+	if [ -e ~/.config/polybar/config ]; then
+		rm ~/.config/polybar/config
+	fi
+	# Remove previous generated dunst theme
+	if [ -e ~/.config/dunst/dunstrc ]; then
+		rm ~/.config/dunst/dunstrc
+	fi
+}
+colorpick () {
+	COLOR=$(shuf -n1 -e ~/.colors/*)
+	SHORTCOLOR=$(echo $COLOR | sed "s@.*/@@")
+	xrdb ~/.Xresources
+	xrdb -merge $COLOR
+}
+
+getcolors () {
+	FOREGROUND="$(xrdb -query | grep 'foreground:'| awk '{print $NF}')"
+	BACKGROUND="$(xrdb -query | grep 'background:'| awk '{print $NF}')"
+	CURSOR="$(xrdb -query | grep 'cursorColor:'| awk '{print $NF}')"
+	BLACK="$(xrdb -query | grep 'color0:'| awk '{print $NF}')"
+	RED="$(xrdb -query | grep 'color1:'| awk '{print $NF}')"
+	GREEN="$(xrdb -query | grep 'color2:'| awk '{print $NF}')"
+	YELLOW="$(xrdb -query | grep 'color3:'| awk '{print $NF}')"
+	BLUE="$(xrdb -query | grep 'color4:'| awk '{print $NF}')"
+	MAGENTA="$(xrdb -query | grep 'color5:'| awk '{print $NF}')"
+	CYAN="$(xrdb -query | grep 'color6:'| awk '{print $NF}')"
+	WHITE="$(xrdb -query | grep 'color7:'| awk '{print $NF}')"
+	ALTBLACK="$(xrdb -query | grep 'color8:'| awk '{print $NF}')"
+	ALTRED="$(xrdb -query | grep 'color9:'| awk '{print $NF}')"
+	ALTGREEN="$(xrdb -query | grep 'color10:'| awk '{print $NF}')"
+	ALTYELLOW="$(xrdb -query | grep 'color11:'| awk '{print $NF}')"
+	ALTBLUE="$(xrdb -query | grep 'color12:'| awk '{print $NF}')"
+	ALTMAGENTA="$(xrdb -query | grep 'color13:'| awk '{print $NF}')"
+	ALTCYAN="$(xrdb -query | grep 'color14:'| awk '{print $NF}')"
+	ALTWHITE="$(xrdb -query | grep 'color15:'| awk '{print $NF}')"
+}
+
+cachecolors () {
+	read -d '' paintmyboxcache <<- EOF
+	FOREGROUND=${FOREGROUND}
+	BACKGROUND="{BACKGROUND}"
+	CURSOR="${CURSOR}"
+	BLACK="${BLACK}"
+	RED="${RED}"
+	GREEN="${GREEN}"
+	YELLOW="${YELLOW}"
+	BLUE="${BLUE}"
+	MAGENTA="${MAGENTA}"
+	CYAN="${CYAN}"
+	WHITE="${WHITE}"
+	ALTBLACK="${ALTBLACK}"
+	ALTRED="${RED}"
+	ALTGREEN="${GREEN}"
+	ALTYELLOW="${YELLOW}"
+	ALTBLUE="${BLUE}"
+	ALTMAGENTA="${MAGENTA}"
+	ALTCYAN="${CYAN}"
+	ALTWHITE="${WHITE}"
+	EOF
+}
+
+deploypolybar () {
+	read -d '' config <<- EOF
+	# Don't edit this file
+	# This will be overwritten on script load
+	# Edit the script instead if you want to modify the theme
+
+[global/wm]
+;https://github.com/jaagr/polybar/wiki/Configuration#global-wm-settings
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+; Define fallback values used by all module formats
+format-foreground = ${FOREGROUND}
+format-background = ${BACKGROUND}
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+[colors]
+; Nord theme ============
+background = ${BACKGROUND}
+background-alt = ${BACKGROUND}
+foreground = ${FOREGROUND}
+foreground-alt = ${FOREGROUND}
+
+fg1 = ${FOREGROUND}
+fg2 = ${FOREGROUND}
+fg3 = ${FOREGROUND}
+fg4 = ${FOREGROUND}
+fg5 = ${FOREGROUND}
+fg6 = ${FOREGROUND}
+fg7 = ${FOREGROUND}
+
+[bar/mainbar-i3]
+monitor = VGA1
+monitor-strict = false
+override-redirect = true
+width = 50%
+height = 30
+offset-x = 30%
+offset-y = 0.0%
+radius = 0.0
+radius-top = 0
+radius-bottom = 4
+fixed-center = true
+bottom = false
+;separator = |
+
+background = ${BACKGROUND}
+foreground = ${FOREGROUND}
+
+line-size = 4
+line-color = #f00
+
+border-size = 0
+;border-left-size = 25
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 25
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+wm-restack = i3
+
+font-0 = "Terminus (TTF):size=9;2"
+font-1 = siji:pixelsize=10;3
+font-2 = "Terminus (TTF):size=9;2"
+font-3 =iosevka Nerd Font:size=11;3
+
+modules-left = time pulseaudio2
+modules-center = i3
+modules-right = mpd
+
+;tray-detached = false
+;tray-offset-x = 0
+;tray-offset-y = 0
+;tray-padding = 2
+;tray-maxsize = 20
+;tray-scale = 1.0
+;tray-position = right
+;tray-background = ${BACKGROUND}
+
+
+;;;;;;;;;;;;;;;;;
+[module/launcher]
+;;;;;;;;;;;;;;;;;
+type = custom/text
+
+content = "%{T3}▟%{T-}"
+
+content-background = ${BACKGROUND}
+content-foreground = ${background}
+content-padding = 0
+click-left = paintmybox
+
+
+[module/time]
+type = internal/date
+interval = 5
+time ="  %a ,%b %d "
+label = %time%
+format=<label>
+format-foreground = ${WHITE}
+format-background = ${BACKGROUND}
+format-prefix ="  "
+format-prefix-foreground = ${FOREGROUND}
+
+[module/cpu_bar]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+;;format = <label> <ramp-coreload>
+format =<label> <bar-load>
+format-prefix = " "
+format-prefix-foreground = ${FOREGROUND}
+format-prefix-background = ${BACKGROUND}
+label-foreground = ${FOREGROUND}
+label-background = ${BACKGROUND}
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = "%percentage%%"
+
+; Only applies if <bar-load> is used
+bar-load-width = 6
+bar-load-gradient = false
+
+bar-load-indicator ="▰"
+bar-load-indicator-foreground = ${RED}
+bar-load-indicator-background = ${BACKGROUND}
+bar-load-indicator-font = 1
+
+bar-load-fill ="▰"
+bar-load-fill-foreground = ${RED}
+bar-load-fill-background = ${BACKGROUND}
+
+bar-load-foreground-0 = ${RED}
+bar-load-background-0 = ${BACKGROUND}
+bar-load-foreground-1 = ${RED}
+bar-load-background-1 = ${BACKGROUND}
+bar-load-foreground-2 = ${RED}
+bar-load-background-2 = ${BACKGROUND}
+bar-load-foreground-3 = ${RED}
+bar-load-background-3 = ${BACKGROUND}
+bar-load-foreground-4 = ${RED}
+bar-load-background-4 = ${BACKGROUND}
+bar-load-fill-font = 1
+
+bar-load-empty ="▱"
+bar-load-empty-foreground = ${ALTBLACK}
+bar-load-empty-background = ${BACKGROUND}
+bar-load-empty-font = 1
+
+[module/memory_bar]
+type = internal/memory
+
+interval = 2
+
+format = <label> <bar-used>
+format-background = ${BACKGROUND}
+format-foreground = ${FOREGROUND}
+format-padding = 1
+format-prefix = " "
+format-prefix-foreground = ${RED}
+label = "%mb_used%"
+
+bar-used-width = 6
+bar-used-gradient = false
+
+bar-used-indicator ="▰"
+bar-used-indicator-foreground = ${RED}
+bar-used-indicator-font = 1
+
+bar-used-fill = "▰"
+bar-used-foreground-0 = ${RED}
+bar-used-background-0 = ${BACKGROUND}
+bar-used-foreground-1 = ${RED}
+bar-used-background-1 = ${BACKGROUND}
+bar-used-foreground-2 = ${RED}
+bar-used-background-2 = ${BACKGROUND}
+bar-used-foreground-3 = ${RED}
+bar-used-background-3 = ${BACKGROUND}
+bar-used-foreground-4 = ${RED}
+bar-used-background-4 = ${BACKGROUND}
+bar-used-foreground-5 = ${RED}
+bar-used-background-5 = ${BACKGROUND}
+bar-used-foreground-6 = ${RED}
+bar-used-background-6 = ${BACKGROUND}
+bar-used-foreground-7 = ${RED}
+bar-used-background-7 = ${BACKGROUND}
+bar-used-foreground-8 = ${RED}
+bar-used-background-8 = ${BACKGROUND}
+bar-used-fill-font = 1
+bar-used-empty = "▱"
+bar-used-empty-foreground = ${ALTBLACK}
+bar-used-empty-font = 1
+
+[module/pulseaudio2]
+type = internal/alsa
+format-volume = %{T2}%{F#FF4F4F}<ramp-volume> <label-volume>
+label-volume = %percentage%%
+format-volume-background =${BACKGROUND}
+format-muted = <label-muted>
+label-muted=""
+ramp-volume-0 = 
+ramp-volume-0-foreground = ${RED}
+ramp-volume-1 = 
+ramp-volume-1-foreground = ${RED}
+ramp-volume-2 = 
+ramp-volume-2-foreground = ${RED}
+ramp-volume-3 = 
+ramp-volume-3-foreground = ${RED}
+ramp-volume-4 = 
+ramp-volume-4-foreground = ${RED}
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+; Only applies if <bar-volume> is used
+bar-volume-width = 6
+bar-volume-gradient = false
+
+bar-volume-indicator ="▰"
+bar-volume-indicator-foreground = ${RED}
+bar-volume-indicator-font = 1
+
+bar-volume-fill ="▰"
+bar-volume-foreground-0 = ${RED}
+bar-volume-foreground-1 = ${RED}
+bar-volume-foreground-2 = ${RED}
+bar-volume-foreground-3 = ${RED}
+bar-volume-foreground-4 = ${RED}
+bar-volume-foreground-5 = ${RED}
+bar-volume-foreground-6 = ${RED}
+bar-volume-foreground-7 = ${RED}
+bar-volume-foreground-8 = ${RED}
+bar-volume-fill-font = 1
+
+bar-volume-empty ="▱"
+bar-volume-empty-foreground = ${ALTBLACK}
+bar-volume-empty-font = 1
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = false
+index-sort = false
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+ws-icon-0 = 1;●
+ws-icon-1 = 2;●
+ws-icon-2 = 3;●
+ws-icon-3 = 4;●
+ws-icon-4 = 5;●
+ws-icon-5 = 6;●
+ws-icon-6 = 7;●
+ws-icon-7 = 8;●
+ws-icon-8 = 9;●
+ws-icon-9 = 10;●
+ws-icon-default = ●
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = ${FOREGROUND}
+label-mode-background = ${BACKGROUND}
+
+label-focused = %icon%
+label-focused-background = ${BACKGROUND}
+label-focused-foreground = ${FOREGROUND}
+label-focused-underline = ${BACKGROUND}
+label-focused-padding = 2
+
+label-unfocused = %icon%
+label-unfocused-padding = 2
+label-unfocused-background = ${BACKGROUND}
+label-unfocused-foreground = ${ALTBLACK}
+label-unfocused-underline = ${BACKGROUND}
+
+label-visible = %icon%
+label-visible-background = ${BACKGROUND}
+label-visible-underline = ${BACKGROUND}
+label-visible-padding = 2
+
+label-urgent = %icon%
+label-urgent-background = ${BACKGROUND}
+label-urgent-foreground = ${RED}
+label-urgent-padding = 2
+label-urgent-underline = ${BACKGROUND}
+
+format-foreground = ${FOREGROUND}
+format-background = ${BACKGROUND}
+
+[module/mpd]
+type = internal/mpd
+
+interval = 2
+
+format-online = <label-song>
+format-online-background = ${BACKGROUND}
+format-online-padding = 1
+
+label-song =  "%artist% - %title%"
+label-song-maxlen = 30
+label-song-ellipsis = true
+
+label-offline = "MPD is offline"
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-play-foreground =${FOREGROUND}
+icon-pause-foreground =${FOREGROUND}
+icon-stop-foreground =${FOREGROUND}
+icon-prev-foreground =${FOREGROUND}
+icon-next-foreground =${FOREGROUND}
+
+
+[module/mpd_bar]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+format-online = <label-time> <bar-progress>
+label-time ="%elapsed%"
+label-time-foreground = ${ALTBLACK}
+label-time-background = ${BACKGROUND}
+label-offline = "mpd is offline"
+bar-progress-width =15
+bar-progress-background = ${BACKGROUND}
+bar-progress-foreground = ${BACKGROUND}
+bar-progress-gradient = false
+
+bar-progress-indicator ="█"
+bar-progress-indicator-foreground = ${FOREGROUND}
+bar-progress-indicator-background = ${BACKGROUND}
+bar-progress-indicator-font = 1
+
+bar-progress-fill ="█"
+bar-progress-fill-background= ${BACKGROUND}
+bar-progress-fill-foreground= ${FOREGROUND}
+
+bar-progress-foreground-0 = ${ALTBLACK}
+bar-progress-background-0 = ${BACKGROUND}
+bar-progress-foreground-1 = ${ALTBLACK}
+bar-progress-background-1 = ${BACKGROUND}
+bar-progress-foreground-2 = ${ALTBLACK}
+bar-progress-background-2 = ${BACKGROUND}
+bar-progress-foreground-3 = ${ALTBLACK}
+bar-progress-background-3 = ${BACKGROUND}
+bar-progress-foreground-4 = ${ALTBLACK}
+bar-progress-background-4 = ${BACKGROUND}
+bar-progress-foreground-5 = ${ALTBLACK}
+bar-progress-background-5 = ${BACKGROUND}
+bar-progress-foreground-6 = ${ALTBLACK}
+bar-progress-background-6 = ${BACKGROUND}
+bar-progress-foreground-7 = ${ALTBLACK}
+bar-progress-background-7 = ${BACKGROUND}
+bar-progress-foreground-8 = ${ALTBLACK}
+bar-progress-background-8 = ${BACKGROUND}
+bar-progress-fill-font = 1
+
+bar-progress-empty ="█"
+bar-progress-empty-foreground = ${FOREGROUND}
+bar-progress-empty-background = ${BACKGROUND}
+bar-progress-empty-font = 1
+
+;;;;;;;;;;;;;;;;;;;
+;;   MPD_BAR2    ;;
+;;;;;;;;;;;;;;;;;;;
+[module/mpd_bar2]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+format-online = <label-time>
+label-time = "%total%"
+label-time-foreground = ${ALTBLACK}
+label-time-background = ${BACKGROUND}
+label-offline = "mpd is offline"
+EOF
+}
+
+deploydunst () {
+	read -d '' dunstrc <<- EOF
+	[global]
+	monitor = 0
+	follow = mouse
+	geometry = "275x50-30+30"
+	indicate_hidden = yes
+	shrink = no
+	separator_height = 0
+	padding = 16
+	horizontal_padding = 24
+	frame_width = 2
+	sort = no
+	idle_threshold = 120
+	font = Noto Sans 8
+	line_height = 4
+	markup = full
+	alignment = left
+	show_age_threshold = 60
+	word_wrap = yes
+	ignore_newline = no
+	stack_duplicates = false
+	hide_duplicate_count = yes
+	show_indicators = no
+	icon_position = off
+	sticky_history = yes
+	history_length = 20
+	browser = /usr/bin/firefox -new-tab
+	always_run_script = true
+	title = Dunst
+	class = Dunst
+
+	[shortcuts]
+	close = ctrl+space
+	close_all = ctrl+shift+space
+	history = ctrl+grave
+	context = ctrl+shift+period
+
+	[urgency_low]
+	timeout = 4
+	background = "$BLACK"
+	foreground = "$FOREGROUND"
+	frame_color = "$RED"
+
+	[urgency_normal]
+	timeout = 8
+	background = "$BLACK"
+	foreground = "$FOREGROUND"
+	frame_color = "$RED"
+
+	[urgency_critical]
+	timeout = 0
+	background = "$BLACK"
+	foreground = "$FOREGROUND"
+	frame_color = "$RED"
+	EOF
+}
+
+escape () {
+	printf "%b" "\033]10;$FOREGROUND\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]11;$BACKGROUND\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]708;$BACKGROUND\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]12;$CURSOR\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;0;$BLACK\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;8;$ALTBLACK\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;1;$RED\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;9;$ALTRED\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;2;$GREEN\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;10;$ALTGREEN\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;3;$YELLOW\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;11;$ALTYELLOW\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;4;$BLUE\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;12;$ALTBLUE\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;13;$ALTMAGENTA\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;5;$MAGENTA\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;6;$CYAN\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;14;$ALTCYAN\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;7;$WHITE\007" > "$term" ; sleep 0.1
+	printf "%b" "\033]4;15;$ALTWHITE\007" > "$term" ; sleep 0.1
+}
+
+sendescape () {
+	for term in /dev/pts/[0-9]*; do
+		escape &
+	done
+}
+
+wallpaperpick () {
+	WALLPAPER=$(shuf -n1 -e ~/.wallpaper/*)
+	SHORTWALLPAPER=$(echo $WALLPAPER | sed "s/.*\///" | sed "s/\..*//")
+	ls ~/.wallpaper | sort -R | tail -$N | while read file; do
+		# Useless animation because aesthetic is really important
+		hsetroot -fill ~/.wallpaper/$file -tint "#3c6f86"
+		sleep 0.1
+	done
+	hsetroot -fill $WALLPAPER -tint "#9ccfe6"
+}
+
+main () {
+	checkup
+	killall -9 polybar dunst
+	colorpick
+	getcolors
+	cachecolors
+	# deploytheme
+	deploypolybar
+	deploydunst
+	echo "$paintmyboxcache" > ~/.cache/paintmyboxcache
+	echo "$config" > ~/.config/polybar/config mainbar-i3 &
+	echo "$dunstrc" > ~/.config/dunst/dunstrc
+	dunst -format "<b>%s</b>\n%b" &
+	sendescape &
+	wallpaperpick
+	polybar -c ~/.config/polybar/config mainbar-i3 &
+}
+
+main
+notify-send "i3-Gaps Loaded" "With $SHORTCOLOR color and $SHORTWALLPAPER wallpaper"

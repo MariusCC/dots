@@ -1,0 +1,58 @@
+conky.config = {
+	use_xft                = true,
+	xftalpha               = 1,
+	update_interval        = 1,
+	total_run_times        = 0,
+
+	background             = true,
+    out_to_console         = false,
+    out_to_stderr          = false,
+
+	own_window             = true,
+    own_window_class       = 'Conky',
+	own_window_type        = 'override',
+	own_window_argb_visual = true,
+    own_window_transparent = true,
+
+	double_buffer          = true,
+
+	minimum_width          = 285,
+	maximum_width          = 285,
+
+	minimum_height         = 200,
+
+	draw_shades            = false,
+	draw_outline           = false,
+	draw_borders           = false,
+	draw_graph_borders     = true,
+
+    default_color          = 'C0E341',
+    color0                 = 'ffffff',
+    color1                 = 'D08770',
+    color2                 = 'EBCB8B',
+    color3                 = 'A3BE8C',
+    color4                 = 'B48EAD',
+
+	alignment              = 'top_left',
+	gap_x                  = 1300,
+	gap_y                  = 668,
+	no_buffers             = true,
+	text_buffer_size       = 2048,
+	uppercase              = false,
+	cpu_avg_samples        = 4,
+	net_avg_samples        = 2,
+	override_utf8_locale   = true,
+
+	font                    = 'Roboto Regular:size=9',
+
+};
+
+conky.text = [[
+${image ~/.config/conky/res/bg.png -p 0,0 -s 290x200}
+${voffset 90}
+${offset 70} ${font Terminus (TTF):Bold:size=9} ${color ffffff}${scroll 26 3 ${mpd_smart}}\
+${voffset 5}
+${offset 10} ${color4}• ${color} ${font Terminus (TTF):size=11}Favorite ${color1}Songs..${color}
+${voffset 15}
+${offset 10} ${font Terminus (TTF):Bold:size=9} ${color ffffff}${mpd_elapsed}  ${color ffffff}${mpd_bar 3,170}  ${color ffffff}${mpd_length}
+]];

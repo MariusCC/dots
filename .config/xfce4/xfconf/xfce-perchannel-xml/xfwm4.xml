@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfwm4" version="1.0">
+  <property name="general" type="empty">
+    <property name="workspace_names" type="array">
+      <value type="string" value="TTY"/>
+      <value type="string" value="WEB"/>
+      <value type="string" value="SYS"/>
+      <value type="string" value="MED"/>
+      <value type="string" value="LAB"/>
+    </property>
+    <property name="workspace_count" type="int" value="5"/>
+  </property>
+</channel>
